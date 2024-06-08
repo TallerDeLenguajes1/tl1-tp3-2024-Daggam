@@ -2,14 +2,25 @@
 #include <stdlib.h>
 #include <string.h>
 
-#define CANT 5
 void main()
 {
-    char *nombres[CANT];
+    //REALIZO EJERCICIO 5.
+    
+    int cantidad;
+    do{
+        puts("Cual es la cantidad de nombres a ingresar:");
+        scanf("%d",&cantidad);
+        if(cantidad<=0) puts("cantidad invalida.");
+    }while(cantidad<=0);
+
+    char **nombres = (char**)malloc(cantidad*sizeof(char*));
     char *Buff = (char *)malloc(100 * sizeof(char));
-    printf("Ingrese 5 nombres:\n");
+    
+    
+    printf("Ingrese los nombres:\n");
+    fflush(stdin);
     // Cargo el nombre
-    for (int i = 0; i < CANT; i++)
+    for (int i = 0; i < cantidad; i++)
     {
         printf("%d. ",i+1);
         gets(Buff);
@@ -19,9 +30,10 @@ void main()
     //libero, printeo y libero.
     free(Buff);
     puts("\nNombres ingresados:");
-    for (int i = 0; i < CANT; i++)
+    for (int i = 0; i < cantidad; i++)
     {
         printf("%d. %s\n",i+1,nombres[i]);
         free(nombres[i]);
     }
+    free(nombres);
 }
